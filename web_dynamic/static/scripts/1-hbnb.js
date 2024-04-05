@@ -1,4 +1,4 @@
-/*$(document).ready(function () {
+$(document).ready(function () {
 	const checked_amenities = {};
 	$("li input[type=checkbox]").change(function () {
 		if (this.checked) {
@@ -9,10 +9,10 @@
 		$(".amenities h4").text(Object.keys(checked_amenities).sort().join(", "));
 	});
 });
-*/
+
 
 //An alternative method that works somewhat the same
-
+/*
 $(document).ready(function() {
 
   let presentAmenities = {};
@@ -30,3 +30,4 @@ $(document).ready(function() {
   let amenitiesList = Object.values(presentAmenities).join(', ');
   $('.amenities h4').text('Amenities: ' + amenitiesList);
  });
+*/
