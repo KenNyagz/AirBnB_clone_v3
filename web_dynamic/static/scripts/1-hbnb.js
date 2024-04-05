@@ -1,4 +1,4 @@
-document.ready(function () {
+$(document).ready(function () {
 	const checked_amenities = {};
 	$("li input[type=checkbox]").change(function () {
 		if (this.checked) {
