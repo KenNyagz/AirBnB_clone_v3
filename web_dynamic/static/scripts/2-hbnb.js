@@ -1,14 +1,4 @@
 $(document).ready(function () {
-	const checked_amenities = {};
-	$("li input[type=checkbox]").change(function () {
-		if (this.checked) {
-			checked_amenities[this.dataset.name] = this.dataset.id;
-		} else {
-			delete checked_amenities[this.dataset.name];
-		}
-		$(".amenities h4").text(Object.keys(checked_amenities).sort().join(", "));
-	});
-
   $.ajax({
     url: "http://0.0.0.0:5001/api/v1/status/",
     type: "GET",
@@ -20,4 +10,14 @@ $(document).ready(function () {
       }
     },
   });
+
+  const checked_amenities = {};
+    $("li input[type=checkbox]").change(function () {
+        if (this.checked) {
+              checked_amenities[this.dataset.name] = this.dataset.id;
+        } else {
+               delete checked_amenities[this.dataset.name];
+        }
+        $(".amenities h4").text(Object.keys(checked_amenities).sort().join(", "));
+    });
 });
