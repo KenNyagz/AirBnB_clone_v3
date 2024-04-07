@@ -1,14 +1,4 @@
 $(document).ready(function () {
-	const checked_amenities = {};
-	$("li input[type=checkbox]").change(function () {
-		if (this.checked) {
-			checked_amenities[this.dataset.name] = this.dataset.id;
-		} else {
-			delete checked_amenities[this.dataset.name];
-		}
-		$(".amenities h4").text(Object.keys(checked_amenities).sort().join(", "));
-	});
-
   $.ajax({
     url: "http://0.0.0.0:5001/api/v1/status/",
     type: "GET",
@@ -20,14 +10,14 @@ $(document).ready(function () {
       }
     },
   });
-});
+
   $.ajax({
     type: 'POST',
     url: 'http://0.0.0.0:5001/api/v1/places_search/',
     contentType: 'application/json',
     data: JSON.stringify({})
-}).done(function (data) {
-    for (const place of data) {
+    success: function (data) {
+      for (const place of data) {
         const template = `<article>
             <div class="title">
                 <h2>${place.name}</h2>
@@ -47,5 +37,17 @@ $(document).ready(function () {
             <div class="description">${place.description}</div>
         </article>`;
         $('section.places').append(template);
+      }
     }
+  });
+
+  const checked_amenities = {};
+    $("li input[type=checkbox]").change(function () {
+      if (this.checked) {
+        checked_amenities[this.dataset.name] = this.dataset.id;
+      } else {
+        delete checked_amenities[this.dataset.name];
+      }
+      $(".amenities h4").text(Object.keys(checked_amenities).sort().join(", "));
+  });
 }); 
